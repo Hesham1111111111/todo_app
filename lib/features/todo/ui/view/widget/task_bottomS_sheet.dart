@@ -19,7 +19,6 @@ class _TaskBottomSheetState extends State<TaskBottomSheet> {
   final timeController = TextEditingController();
   final dateController = TextEditingController();
   final imageController = TextEditingController();
-
   File? _image;
 
   @override
@@ -33,7 +32,7 @@ class _TaskBottomSheetState extends State<TaskBottomSheet> {
     }
   }
 
-   pickImage() async {
+  pickImage() async {
     final pickedFile = await ImagePicker().pickImage(
       source: ImageSource.gallery,
     );

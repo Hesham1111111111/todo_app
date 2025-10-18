@@ -8,16 +8,17 @@ import '../../../manegar/todo_cubit.dart';
 import 'hero_tage.dart';
 
 class CardListview extends StatelessWidget {
-   CardListview({super.key});
+  CardListview({super.key});
 
   @override
-
   Widget build(BuildContext context) {
     var tasks = context.read<TodoCubit>().tasks;
 
     return ListView.separated(
       itemCount: tasks.length,
-      separatorBuilder: (_, __) => const Divider(color: Colors.white70),
+      separatorBuilder: (_, __) =>  Divider(
+          height: 15,
+          color: Colors.white70),
       itemBuilder: (context, index) {
         var task = tasks[index];
         return GestureDetector(
@@ -34,10 +35,7 @@ class CardListview extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),
               ),
-              margin: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 8,
-              ),
+              margin:  EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               elevation: 5,
               child: Row(
                 children: [
@@ -47,24 +45,24 @@ class CardListview extends StatelessWidget {
                       bottomLeft: Radius.circular(15),
                     ),
                     child:
-                    task['image'] != null &&
-                        task['image'].toString().isNotEmpty
+                        task['image'] != null &&
+                            task['image'].toString().isNotEmpty
                         ? Image.file(
-                      File(task['image']),
-                      width: 100,
-                      height: 100,
-                      fit: BoxFit.cover,
-                    )
+                            File(task['image']),
+                            width: 100,
+                            height: 100,
+                            fit: BoxFit.cover,
+                          )
                         : Container(
-                      width: 100,
-                      height: 100,
-                      color: Colors.teal.shade100,
-                      child: const Icon(
-                        Icons.image_not_supported,
-                        color: Colors.teal,
-                        size: 40,
-                      ),
-                    ),
+                            width: 100,
+                            height: 100,
+                            color: Colors.teal.shade100,
+                            child: const Icon(
+                              Icons.image_not_supported,
+                              color: Colors.teal,
+                              size: 40,
+                            ),
+                          ),
                   ),
 
                   Expanded(
@@ -113,9 +111,7 @@ class CardListview extends StatelessWidget {
                               size: 26,
                             ),
                             onPressed: () {
-                              context.read<TodoCubit>().deleteTask(
-                                task['id'],
-                              );
+                              context.read<TodoCubit>().deleteTask(task['id']);
                             },
                           ),
                         ],
@@ -128,6 +124,7 @@ class CardListview extends StatelessWidget {
           ),
         );
       },
-    );;
+    );
+
   }
 }

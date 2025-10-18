@@ -44,18 +44,18 @@ class TodoCubit extends Cubit<TodoState> {
     emit(TodoInsertDatabase());
   }
 
-  void getData() async {
+   getData() async {
     tasks = await database!.rawQuery("SELECT * FROM task");
     emit(TodoGetDatabase());
   }
 
-  void deleteTask(int id) async {
+   deleteTask(int id) async {
     await database!.rawDelete("DELETE FROM task WHERE id = ?", [id]);
     getData();
     emit(TodoDelete());
   }
 
-  void updateTask({
+   updateTask({
     required int id,
     required String title,
     required String date,
