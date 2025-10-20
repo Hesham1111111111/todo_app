@@ -11,7 +11,7 @@ class TaskDetail extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.teal.shade50,
       appBar: AppBar(
-        backgroundColor: Colors.indigo,
+        backgroundColor: Colors.tealAccent,
         title: const Text("Task Details"),
         centerTitle: true,
         elevation: 3,

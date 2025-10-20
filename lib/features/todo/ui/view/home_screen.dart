@@ -24,8 +24,44 @@ class HomeScreen extends StatelessWidget {
           var tasks = context.read<TodoCubit>().tasks;
           if (tasks.isEmpty) {
             return Center(
-              child: Text("No tasks yet", style: AppStayle.stayle1),
+              child: TweenAnimationBuilder<double>(
+                tween: Tween(begin: 50.0, end: 0.0),
+                duration:  Duration(seconds: 1 ),
+                curve: Curves.easeOutBack,
+                builder: (context, value, child) {
+                  return Opacity(
+                    opacity: (1 - (value / 50)).clamp(0.0, 1.0),
+                    child: Transform.translate(
+                      offset: Offset(0, value),
+                      child: child,
+                    ),
+                  );
+                },
+                child: AnimatedContainer(
+                  duration: Duration(seconds: 1),
+                  curve: Curves.bounceOut,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                       Icon(
+                        Icons.checklist_rtl_rounded,
+                        size: 80,
+                        color: Colors.white70,
+                      ),
+                       SizedBox(height: 10),
+                      Text(
+                        "No tasks yet",
+                        style: AppStayle.stayle1.copyWith(
+                          fontSize: 28,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             );
+
           } else {
             return CardListview();
           }
